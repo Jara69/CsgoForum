@@ -1,0 +1,145 @@
+<div class="backround" >
+<div class="usernameAvatar">
+<h1 class="username">{{this.username}}</h1>
+<input accept="*.png.jpg" class="avatarButton" type="file" (change)="onFileSelected($event)">
+<button type="button" (click)="uploadAvatar()">Upload Avatar</button>
+<img id="image"  >
+</div>
+
+
+
+<div class="aboutMe">
+  <strong>About Me</strong>
+  <textarea [(ngModel)]="aboutMeText"  ></textarea>
+</div>
+
+
+<div class="wrapper">
+  <div class="selectionSocialDiv">
+    <strong class="badgeTag" >{{this.goal}} - Cíl</strong>
+    <select [(ngModel)]="goal" #cil="ngModel" ngModel>
+      <option>Jen tak pro zábavu</option>
+      <option>Hraní MM</option>
+      <option>Hraní Faceitu</option>
+      <option>Hraní Esea</option> 
+      <option>Online turnaje</option> 
+      <option>Offline turnaje</option>
+    </select>
+  </div>
+  
+  <div class="selectionSocialDiv">
+    <strong class="badgeTag" >{{this.achievement}} - Největší úspěch</strong>
+    <input type="text" [(ngModel)]="achievement" placeholder="Největší dosažený úspěch....">
+  </div>
+
+  <div class="selectionSocialDiv">
+    <strong class="badgeTag">{{this.age}} - Věk</strong>
+  <input placeholder="Váš věk...." type="number" [(ngModel)]="age" (ngModelChange)="submitNumber($event)" >
+  </div>
+
+  <div class="selectionSocialDiv">
+    <a class="badgeTag" [href]="this.urlEsea">
+      <img src="../../assets/esea icon.webp" style="width: 35px; height: 35px; text-align: center;" alt="">
+    </a>
+    <input type="url" [(ngModel)]="urlEsea" ngModel (ngModelChange)="submitAny($event)" >
+  </div>
+
+  <div class="selectionSocialDiv">
+    <a class="badgeTag" [href]="this.urlFaceit">
+      <img src="../../assets/faceit icon.webp" style="height: 30px; width: 30px;" alt="">
+    </a>
+    <input type="url" [(ngModel)]="urlFaceit" ngModel (ngModelChange)="submitAny($event)" >
+  </div>
+  
+  <div class="selectionSocialDiv">
+    <a class="badgeTag" [href]="this.urlSteam">
+      <img style="width: 30px; height: 30px;" src="../../assets/steam icon.png" alt="">
+    </a>
+    <input type="url" [(ngModel)]="urlSteam" ngModel (ngModelChange)="submitAny($event)" >
+  </div>
+  
+</div>
+
+<div class="selectionDiv">
+<select #mmrank2="ngModel" ngModel [(ngModel)]="mmrank">
+    <option>Nemám Rank</option>
+    <option>Silver I</option>
+    <option>Silver II</option> 
+    <option>Silver III</option>
+    <option>Silver IV</option>
+    <option>Silver V</option>
+    <option>Silver VI</option>
+    <option>Gold Nova I</option>
+    <option>Gold Nova II</option>
+    <option>Gold Nova III</option>
+    <option>Gold Nova IV</option>
+    <option>Master Guardian I</option>
+    <option>Master Guardian II</option>
+    <option>Master Guardian Elite</option>
+    <option>Distinguished Master Guardian</option>
+    <option>Legendary Eagle</option>
+    <option>Legendary Eagle Master</option>
+    <option>Supreme Master First Class</option>
+    <option>The Global Elite</option>
+</select>
+<strong class="badgeTag" >MM Rank - {{this.mmrank}}</strong>
+</div>
+
+
+<div class="selectionDiv"> 
+    <select #faceitLevel="ngModel" ngModel [(ngModel)]="faceitLvl">
+      <option>Nemám Faceit</option>
+      <option>Faceit Level 1</option>
+      <option>Faceit Level 2</option>
+      <option>Faceit Level 3</option>
+      <option>Faceit Level 4</option>
+      <option>Faceit Level 5</option>
+      <option>Faceit Level 6</option>
+      <option>Faceit Level 7</option>
+      <option>Faceit Level 8</option>
+      <option>Faceit Level 9</option>
+      <option>Faceit Level 10</option>
+    </select>
+    <strong class="badgeTag" >FACEIT - {{this.faceitLvl}} </strong>
+</div>
+
+
+<div class="selectionDiv">
+  <input type="number"  [(ngModel)]="hours" placeholder="Počet odehraných hodin...." (ngModelChange)="submitNumber($event)" >
+  <strong class="badgeTag" >Počet hodin - {{this.hours}}</strong>
+</div>
+
+
+
+
+<div class="selectionDiv">
+  <select [(ngModel)]="role">
+    <option>Entry Fragger</option>
+    <option>Lurker</option>
+    <option>Awper</option>
+    <option>Support</option>
+    <option>In Game Leader</option>
+  </select>
+  <strong class="badgeTag">Role - {{this.role}}</strong>
+</div>
+
+
+<div class="selectionDiv">
+    <select #schopnost="ngModel" ngModel [(ngModel)]="ability">
+      <option>Znalost Granátů</option>
+      <option>Čtení hry soupeře (GameSense)</option>
+      <option>Aim</option>
+      <option>Clutch Situace</option>
+      <option>Znalost týmových taktik</option>
+    </select>
+   <strong class="badgeTag">Silná stránka - {{this.ability}}</strong>
+</div>
+
+<div>
+  <button style="float: right;" (click)="saveToLS()" (click)="saveToDb()">
+    Submit
+  </button>
+</div>
+</div>
+
+

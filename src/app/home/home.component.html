@@ -1,0 +1,37 @@
+<div class="backround">
+<div style="padding: 20px;" class="container">
+    <div class="item" *ngFor="let posts of post"  > 
+        <div>
+        <h1>{{posts.username}}</h1>
+        <h2>{{posts.nadpis}}</h2>
+        </div>
+        <div class="item">
+            <p>{{posts.obsah}}</p>
+        </div>
+            <span *ngIf="comment.value.length >= 1" >{{this.username + ' : ' + comment.value}}</span>
+        </div>
+        <div *ngFor="let com of comment"  class="comments">
+            <form  (ngSubmit)="addComment(koment.value, this.username)" >
+                <label>Přidat komentář</label>
+                <textarea style="resize: none; padding: 10px;" #koment ></textarea>
+                <input type="submit" placeholder="Okomentuj...." >
+            </form>
+        </div>
+    
+
+
+<div class="container">
+    <form (ngSubmit)="vytvoritTema(nadpis.value, obsah.value, this.username)">
+  
+      <label for="lname">Nadpis tématu</label>
+      <input #nadpis type="text" id="lname" name="lastname" placeholder="Nadpis tématu ..">
+  
+      <label for="subject">Váš dotaz</label>
+      <textarea #obsah id="subject" name="subject" placeholder="Text .." style="height:200px; padding: 10px; resize: none; "></textarea>
+  
+      <input type="submit" value="Vytvořit téma">
+  
+    </form>
+  </div>
+</div>
+</div>

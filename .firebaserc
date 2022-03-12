@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "csgoforum-4aa5f"
+  },
+  "targets": {
+    "csgoforum-4aa5f": {
+      "hosting": {
+        "csgoForum": [
+          "csgoforum-4aa5f"
+        ]
+      }
+    }
+  }
+}

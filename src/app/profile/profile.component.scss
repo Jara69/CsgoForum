@@ -1,0 +1,72 @@
+.usernameAvatar{
+    text-align: center;
+}
+
+.rankStitek{
+   border-style: solid;
+}
+
+.badgeTag{
+    padding: 20px;
+}
+
+.selectionDiv{
+    padding: 20px;
+
+}
+
+.selectionSocialDiv{
+    padding: 20px;
+
+}
+
+.eseaSocialDiv{
+    float: right;
+    padding-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.wrapper{
+    text-align: center;
+    float: right;
+}
+
+select{
+    border-radius: 10px;
+}
+
+input{
+    border-radius: 10px;
+}
+
+.aboutMe{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: c;
+    flex-direction: column;
+    padding-top: 60px;
+
+}
+
+textarea{
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+}
+
+.backround{
+    background-image: url("../../assets/csgo2.jpg");
+    height: 94.3vh;
+}
+
+strong{
+    color: whitesmoke;
+    font-size: 20px;
+    font-family: monospace;
+    border: 1px solid whitesmoke;
+}
