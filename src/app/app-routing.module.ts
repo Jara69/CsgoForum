@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppComponent } from './app.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'Home-component', component: HomeComponent},
   {path: 'Login-component', component: LoginComponent},
   {path: 'Contact-component', component: ContactComponent},
-  {path: 'App-component', component: AppComponent}
+  {path: 'App-component', component: AppComponent},
+  {path: 'user/:id', component: UserProfileComponent}
 
 
 ];

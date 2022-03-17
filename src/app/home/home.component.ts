@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const post = this.fireStore.collection<IForum>("Forum")
     post.get().subscribe(d => this.post = d.docs.map((c: { data: () => any; }) => c.data()))
+
+
    
     
     const comment = this.fireStore.collection<IComments>("Komentare")
@@ -86,5 +88,6 @@ export class HomeComponent implements OnInit {
   }
 
   getUserId(){
+      this.fireStore.collection("Forum").get()
   }
 }

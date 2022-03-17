@@ -2,13 +2,12 @@
 <div style="padding: 20px;" class="container">
     <div class="item" *ngFor="let posts of post"  > 
         <div>
-        <h1>{{posts.username}}</h1>
+        <h1 style="cursor: pointer;" [routerLink]="['/user' , posts.id]">{{posts.username}}</h1>
         <h2>{{posts.nadpis}}</h2>
         </div>
         <div class="item">
             <p>{{posts.obsah}}</p>
         </div>
-            <span *ngIf="comment.value.length >= 1" >{{this.username + ' : ' + comment.value}}</span>
         </div>
         <div *ngFor="let com of comment"  class="comments">
             <form  (ngSubmit)="addComment(koment.value, this.username)" >

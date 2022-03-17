@@ -15,9 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
+
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +27,6 @@ class ImageSnippet {
 export class ProfileComponent implements OnInit {
 
 
-  selectedFile: ImageSnippet;
 
 
 
@@ -57,11 +54,31 @@ export class ProfileComponent implements OnInit {
   avatar: any;
   img: null;
   username: string;
+  avatar2: any;
+  edit: boolean;
+  edit2: boolean;
+  editA: boolean;
+  email: string;
 
 
 
-  click(){
-    console.log(this.vyberRanku);
+  addLinks(){
+    this.edit = true;
+  }
+
+  addSheets(){
+    this.edit2 = true;
+  }
+
+  editAvatar(){
+    this.editA = true;
+  }
+
+  saveLinks(){
+    localStorage.setItem("esea", this.urlEsea);
+    localStorage.setItem("faceit", this.urlFaceit);
+    localStorage.setItem("steam", this.urlSteam);
+    this.edit = false;
   }
 
   submitNumber(event: number){
@@ -86,32 +103,31 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem("achievement", this.achievement);
     localStorage.setItem("goal", this.goal);
     localStorage.setItem("age", JSON.stringify(this.age));
-    localStorage.setItem("esea", this.urlEsea);
-    localStorage.setItem("faceit", this.urlFaceit);
-    localStorage.setItem("steam", this.urlSteam);
     localStorage.setItem("rank", this.mmrank);
     localStorage.setItem("faceitLevel", this.faceitLvl);
     localStorage.setItem("hours", JSON.stringify(this.hours));
     localStorage.setItem("role", this.role);
     localStorage.setItem("ability", this.ability);
     localStorage.setItem("aboutMe", this.aboutMeText);
+    this.edit2 = false;
   }
 
   saveToDb(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        user.updateProfile
         firebase.database().ref('users/' + user.displayName + '/achievement').set(this.achievement);
-        firebase.database().ref('users/' + user.displayName + '/goal').set(this.goal);
-        firebase.database().ref('users/' + user.displayName + '/age').set(this.age);
-        firebase.database().ref('users/' + user.displayName + '/esea').set(this.urlEsea);
-        firebase.database().ref('users/' + user.displayName + '/faceitUrl').set(this.urlFaceit);
-        firebase.database().ref('users/' + user.displayName + '/steam').set(this.urlSteam);
-        firebase.database().ref('users/' + user.displayName + '/rank').set(localStorage.getItem("rank"));
-        firebase.database().ref('users/' + user.displayName + '/faceitLevel').set(this.faceitLvl);
-        firebase.database().ref('users/' + user.displayName + '/hours').set(this.hours);
-        firebase.database().ref('users/' + user.displayName + '/role').set(this.role);
-        firebase.database().ref('users/' + user.displayName + '/ability').set(this.ability);
-        firebase.database().ref('users/' + user.displayName + '/aboutMe').set(this.aboutMeText);
+        firebase.database().ref('users/' + user.uid + '/goal').set(this.goal);
+        firebase.database().ref('users/' + user.uid + '/age').set(this.age);
+        firebase.database().ref('users/' + user.uid + '/esea').set(this.urlEsea);
+        firebase.database().ref('users/' + user.uid + '/faceitUrl').set(this.urlFaceit);
+        firebase.database().ref('users/' + user.uid + '/steam').set(this.urlSteam);
+        firebase.database().ref('users/' + user.uid + '/rank').set(localStorage.getItem("rank"));
+        firebase.database().ref('users/' + user.uid + '/faceitLevel').set(this.faceitLvl);
+        firebase.database().ref('users/' + user.uid + '/hours').set(this.hours);
+        firebase.database().ref('users/' + user.uid + '/role').set(this.role);
+        firebase.database().ref('users/' + user.uid + '/ability').set(this.ability);
+        firebase.database().ref('users/' + user.uid + '/aboutMe').set(this.aboutMeText);
       } else {
       }
     });
@@ -141,17 +157,24 @@ export class ProfileComponent implements OnInit {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
      this.afStorage.ref('avatar/' + user.displayName).put(this.avatar);
-     const storageRef = firebase.storage().ref('avatar/' + user.displayName);
-     storageRef.getDownloadURL().then(function(url){
-       const image = document.getElementById('image');
-       this.image.src = url;
-       console.log(url);
-     })
     } else {
     }
   });
  
  }
+
+ getAvatar(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+     const ref = this.afStorage.ref('avatar/' + user.displayName)
+     ref.getDownloadURL().toPromise().then((avatar3: any) =>{
+      this.avatar2 = avatar3;
+      this.editA = false;
+     })
+    } else {
+    }
+  });
+  }
 
 
   getUserData(){
@@ -186,7 +209,12 @@ export class ProfileComponent implements OnInit {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.username = user.displayName;
-        console.log(user.uid);
+        this.email = user.email;
+        const ref = this.afStorage.ref('avatar/' + user.displayName)
+        ref.getDownloadURL().toPromise().then((avatar3: any) =>{
+          this.avatar2 = avatar3;
+          this.editA = false;
+         })
       } else {
       }
     });

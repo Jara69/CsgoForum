@@ -30,8 +30,6 @@ export class AppComponent implements OnInit {
   firebase.auth().onAuthStateChanged(async (user) => {
     if (user) {
       firebase.database().ref('registered_users/' + user.displayName).set(user.uid);
-      console.log(firebase.database().ref('registered_users/' + user.displayName).get());
-
     } else {
     }
   });

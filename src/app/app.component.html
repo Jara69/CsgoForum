@@ -1,19 +1,12 @@
-
 <div class="topnav">
   <a routerLink="Home-component">Home</a>
-  <a routerLink="Contact-component">Contact</a>
-  <a routerLink="Profile-component" *ngIf="(afAuth.authState | async) === null" (click)="signIn()" (click)="addUserToDb()"> Sing in with google</a>
-    <a routerLink="Home-component" *ngIf="(afAuth.authState | async)" (click)="signOut()" >Sign out</a>
+  <a routerLink="Contact-component">Kontakt</a>
+  <a routerLink="Profile-component" *ngIf="(afAuth.authState | async) === null" (click)="signIn()" (click)="addUserToDb()">Přihlásit</a>
+    <a routerLink="Home-component" *ngIf="(afAuth.authState | async)" (click)="signOut()" >Odhlásit</a>
   <div class="topnav-right">
-    <a routerLink="Profile-component">Profile</a>
+    <a routerLink="Profile-component">Profil</a>
   </div>
 </div> 
-
- 
-
-
-
-
 
 <footer style="color: whitesmoke;" class="bg-transparent text-center text-lg-start ">
   <div class="text-center p-3">© 2022 Copyright: Jaroslav Havrda

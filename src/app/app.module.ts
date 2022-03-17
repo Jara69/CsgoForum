@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { ContactComponent } from './contact/contact.component'
-import { AngularFireStorageModule} from '@angular/fire/storage'
+import { AngularFireStorageModule} from '@angular/fire/storage';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -26,6 +27,7 @@ import { AngularFireStorageModule} from '@angular/fire/storage'
     ProfileComponent,
     LoginComponent,
     ContactComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
