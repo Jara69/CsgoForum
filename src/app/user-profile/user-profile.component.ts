@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import firebase from 'firebase/app';
+
+
 
 @Component({
   selector: 'app-user-profile',
@@ -10,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
