@@ -1,25 +1,5 @@
 <div class="backround">
-<div style="padding: 20px;" class="container">
-    <div class="item" *ngFor="let posts of post"  > 
-        <div>
-        <h1 style="cursor: pointer;" [routerLink]="['/user' , posts.id]">{{posts.username}}</h1>
-        <h2>{{posts.nadpis}}</h2>
-        </div>
-        <div class="item">
-            <p>{{posts.obsah}}</p>
-        </div>
-        </div>
-        <div *ngFor="let com of comment"  class="comments">
-            <form  (ngSubmit)="addComment(koment.value, this.username)" >
-                <label>Přidat komentář</label>
-                <textarea style="resize: none; padding: 10px;" #koment ></textarea>
-                <input type="submit" placeholder="Okomentuj...." >
-            </form>
-        </div>
-    
-
-
-<div class="container">
+  <div style="float: right;" class="container">
     <form (ngSubmit)="vytvoritTema(nadpis.value, obsah.value, this.username)">
   
       <label for="lname">Nadpis tématu</label>
@@ -32,5 +12,29 @@
   
     </form>
   </div>
+<div style="padding: 20px;" class="container">
+    <div class="item" *ngFor="let posts of post"> 
+        <div>
+        <h1 style="cursor: pointer;" [routerLink]="['/user' , posts.id]">{{posts.username}}</h1>
+        
+        <h3>{{posts.nadpis}}</h3>
+        </div>
+      <br style="background-color: grey;" >
+        <div class="item">
+            <p>{{posts.obsah}}</p>
+            
+<div class="item" *ngFor="let komentar of posts.komentare">>
+<p class="komentar">{{ komentare.obsah }} </p>
+</div> 
 </div>
+    <p><br></p>
+
+    <div class="comments">
+      <form (ngSubmit)="(komentar.value)" class="komentForm">
+        <input type="text" #komentar placeholder="Komentar" name="komentar" id="komentar" required>
+        <button  (click)="pridatKomentar(komentar.value, posts.id)" type="submit" class="postComment">Vložit komentář</button>
+      </form>
+    </div> 
+    </div>
+    </div>
 </div>

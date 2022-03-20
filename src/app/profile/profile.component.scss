@@ -86,3 +86,18 @@ textarea{
     visibility: visible;
 }
 
+.wrapper{
+    column-count: 2;
+}
+
+.buttons{
+    text-align: center;
+    background-color: #333;
+    color:  whitesmoke;
+    padding: 10px; 
+    border-radius: 20px;
+}
+.buttons:hover{
+    background-color: #ddd;
+    color: black;
+}

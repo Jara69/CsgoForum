@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         user.updateProfile
-        firebase.database().ref('users/' + user.displayName + '/achievement').set(this.achievement);
+        firebase.database().ref('users/' + user.uid + '/achievement').set(this.achievement);
         firebase.database().ref('users/' + user.uid + '/goal').set(this.goal);
         firebase.database().ref('users/' + user.uid + '/age').set(this.age);
         firebase.database().ref('users/' + user.uid + '/esea').set(this.urlEsea);
@@ -156,7 +156,7 @@ export class ProfileComponent implements OnInit {
  uploadAvatar(){
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-     this.afStorage.ref('avatar/' + user.displayName).put(this.avatar);
+     this.afStorage.ref('avatar/' + user.uid).put(this.avatar);
     } else {
     }
   });
@@ -166,7 +166,7 @@ export class ProfileComponent implements OnInit {
  getAvatar(){
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-     const ref = this.afStorage.ref('avatar/' + user.displayName)
+     const ref = this.afStorage.ref('avatar/' + user.uid)
      ref.getDownloadURL().toPromise().then((avatar3: any) =>{
       this.avatar2 = avatar3;
       this.editA = false;
@@ -208,9 +208,10 @@ export class ProfileComponent implements OnInit {
     this.aboutMeText = this.getBlank(localStorage.getItem("aboutMe"));
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        firebase.database().ref('users/' + user.uid + '/username').set(user.displayName);
         this.username = user.displayName;
         this.email = user.email;
-        const ref = this.afStorage.ref('avatar/' + user.displayName)
+        const ref = this.afStorage.ref('avatar/' + user.uid)
         ref.getDownloadURL().toPromise().then((avatar3: any) =>{
           this.avatar2 = avatar3;
           this.editA = false;

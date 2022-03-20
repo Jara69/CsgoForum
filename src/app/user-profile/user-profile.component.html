@@ -1,1 +1,83 @@
-<p>user-profile works!</p>
+<div class="backroundimg ">
+    <div style="text-align: center; padding-top: 50px;">
+      <a [href]="this.urlSteam" >
+      <img  src="../../assets/steam icon.png" class="icons">
+      </a>
+      <a [href]="this.urlEsea">
+      <img src="../../assets/esea icon.webp" class="icons">
+      </a>
+      <a [href]="this.urlFaceit">
+      <img src="../../assets/faceit icon.webp" class="icons">
+      </a>
+
+ 
+    </div>
+    <div style="text-align: center; padding-top: 70px;">
+     
+  
+        <div>
+        <img style="width: 150px; height: 150px; border-radius: 70px;" [src]="this.avatar2">
+      </div>
+  
+    
+    <h1 style="color: whitesmoke; text-align: center;"  >{{this.username }}</h1>
+  
+    </div>
+
+   
+  </div>
+  <div style="padding: 30px;">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  
+  <div style="text-align: center;">
+  </div>
+  
+  <div>
+  <h2 style="float: right; padding-right: 250px;" >Herní informace</h2>
+
+      <h2>About Me</h2>
+      <p>{{this.aboutMeText}}</p>
+    </div>
+  
+    <div class="wrapper">
+      <div style="padding-bottom: 50px;">
+    </div>
+      <div class="selectionSocialDiv">
+        <strong class="badgeTag" > Cíl - {{this.goal}}</strong>
+      </div>
+  
+    <div class="selectionSocialDiv" style="float: right;">
+    <strong class="badgeTag" > Největší úspěch - {{this.achievement}}</strong>
+  
+  
+    <div class="selectionSocialDiv">
+    <strong class="badgeTag">Věk - {{this.age}}</strong>
+  
+    </div>
+  
+    
+  <div class="selectionDiv">
+    <strong class="badgeTag" >MM Rank - {{this.mmrank}}</strong>
+    </div>
+  
+    
+  <div class="selectionDiv"> 
+    <strong class="badgeTag" >FACEIT - {{this.faceitLvl}} </strong>
+  </div>
+  
+  <div class="selectionDiv">
+    <strong class="badgeTag" >Počet hodin - {{this.hours}}</strong>
+  </div>
+  
+  <div class="selectionDiv">
+    <strong class="badgeTag">Role - {{this.role}}</strong>
+  </div>
+  
+  <div class="selectionDiv">
+   <strong class="badgeTag">Silná stránka - {{this.ability}}</strong>
+      </div>
+    </div>
+  </div>
+  
+  
+  

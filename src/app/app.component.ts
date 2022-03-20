@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import firebase from 'firebase/app';
-import { AngularFileUploaderModule } from "angular-file-uploader";
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable } from "@angular/core";
 
 
@@ -16,9 +14,9 @@ import { Injectable } from "@angular/core";
 })
 export class AppComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private readonly fireStore: AngularFirestore) {
-    
+  constructor(public afAuth: AngularFireAuth) {
    }
+
   ngOnInit(): void {
   }
 
@@ -36,7 +34,7 @@ export class AppComponent implements OnInit {
   }
    
 
-  signIn(user: string) {
+  signIn() {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     this.afAuth.signInWithPopup(googleAuthProvider);
   }

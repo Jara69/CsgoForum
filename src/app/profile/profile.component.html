@@ -46,28 +46,35 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
 <div style="text-align: center;">
-  <button (click)="addSheets()" style="text-align: center;">Vyplnit informace</button>
+  <button (click)="addSheets()" class="buttons">Vyplnit informace</button>
 </div>
 
 
 
 <span *ngIf="this.edit2 == true">
   <div style="text-align: center; padding-top: 10px;">
-  <button (click)="saveToLS()" (click)="saveToDb()" >Uložit</button>
+  <button class="buttons" (click)="saveToDb()" (click)="saveToLS()">Uložit informace</button>
 </div>
 </span>
-    <strong>About Me</strong>
-    <textarea [(ngModel)]="aboutMeText"></textarea>
+
+<div>
+ <h2 style="text-align: right; padding-right: 250px;" >Herní informace</h2>
+
+    <h2>About Me</h2>
+    <p>{{this.aboutMeText}}</p>
+  </div>
   
+    <span *ngIf="this.edit2 == true">
+    <textarea [(ngModel)]="aboutMeText"></textarea>
+  </span>
 
-
-  <div class="wrapper">
-    <div style="padding-bottom: 50px;">
-    <strong  >Herní informace</strong>
+ 
+  <div class="wrapper" style="background-color: #333; border-top-left-radius: 30px; border-top-right-radius: 30px  ; color: whitesmoke;">
+    <div>
   </div>
     <div class="selectionSocialDiv">
       <span *ngIf="this.edit2 == true">
-      <select [(ngModel)]="goal" #cil="ngModel" ngModel>
+      <select [(ngModel)]="goal">
         <option>Jen tak pro zábavu</option>
         <option>Hraní MM</option>
         <option>Hraní Faceitu</option>
@@ -81,14 +88,14 @@
 
   <div class="selectionSocialDiv" style="float: right;">
     <span *ngIf="this.edit2 == true">
-      <input type="text" [(ngModel)]="achievement" placeholder="Největší dosažený úspěch....">
+      <input type="text" maxlength="40" [(ngModel)]="achievement" placeholder="Největší dosažený úspěch....">
     </span>
   <strong class="badgeTag" > Největší úspěch - {{this.achievement}}</strong>
 
 
   <div class="selectionSocialDiv">
     <span *ngIf="this.edit2 == true">
-  <input placeholder="Váš věk...." type="number" [(ngModel)]="age" (ngModelChange)="submitNumber($event)" >
+  <input min="10" max="50" placeholder="Váš věk...." type="number" [(ngModel)]="age" (ngModelChange)="submitNumber($event)" >
 </span>
   <strong class="badgeTag">Věk - {{this.age}}</strong>
 
@@ -144,7 +151,7 @@
 
 <div class="selectionDiv">
   <span *ngIf="this.edit2 == true">
-  <input type="number"  [(ngModel)]="hours" placeholder="Počet odehraných hodin...." (ngModelChange)="submitNumber($event)" >
+  <input min="0" max="20000" type="number"  [(ngModel)]="hours" placeholder="Počet odehraných hodin...." (ngModelChange)="submitNumber($event)" >
   </span>
   <strong class="badgeTag" >Počet hodin - {{this.hours}}</strong>
 </div>
