@@ -46,11 +46,12 @@ export class UserProfileComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.userid = id;
 
-    this.getAvatar();
+    this.getAvatar()
+    
 
     this.db.object("/users/" + id  + "/goal").valueChanges().subscribe(details => {
       this.goal = details;
-      console.log(this.goal);
+
     })
 
     this.db.object("/users/" + id  + "/ability").valueChanges().subscribe(details => {

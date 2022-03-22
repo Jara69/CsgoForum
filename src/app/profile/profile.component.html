@@ -34,7 +34,7 @@
       </span>
 
       <div>
-      <img style="width: 150px; height: 150px; border-radius: 70px;" [src]="this.avatar2">
+      <img [src]="this.avatar2" style="width: 150px; height: 150px; border-radius: 70px;">
     </div>
 
   
@@ -50,7 +50,6 @@
 </div>
 
 
-
 <span *ngIf="this.edit2 == true">
   <div style="text-align: center; padding-top: 10px;">
   <button class="buttons" (click)="saveToDb()" (click)="saveToLS()">Uložit informace</button>
@@ -63,6 +62,7 @@
     <h2>About Me</h2>
     <p>{{this.aboutMeText}}</p>
   </div>
+
   
     <span *ngIf="this.edit2 == true">
     <textarea [(ngModel)]="aboutMeText"></textarea>
@@ -88,7 +88,7 @@
 
   <div class="selectionSocialDiv" style="float: right;">
     <span *ngIf="this.edit2 == true">
-      <input type="text" maxlength="40" [(ngModel)]="achievement" placeholder="Největší dosažený úspěch....">
+      <input [(ngModel)]="achievement" type="text" maxlength="40" placeholder="Největší dosažený úspěch....">
     </span>
   <strong class="badgeTag" > Největší úspěch - {{this.achievement}}</strong>
 

@@ -1,3 +1,6 @@
 export interface IKomentar {
-    obsah: string
+    obsah: string;
+    id : string;
+    username: string;
+
   }

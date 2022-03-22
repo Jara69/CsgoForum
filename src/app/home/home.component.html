@@ -1,38 +1,35 @@
 <div class="backround">
   <div style="float: right;" class="container">
-    <form (ngSubmit)="vytvoritTema(nadpis.value, obsah.value, this.username)">
-  
-      <label for="lname">Nadpis tématu</label>
-      <input #nadpis type="text" id="lname" name="lastname" placeholder="Nadpis tématu ..">
-  
-      <label for="subject">Váš dotaz</label>
-      <textarea #obsah id="subject" name="subject" placeholder="Text .." style="height:200px; padding: 10px; resize: none; "></textarea>
-  
-      <input type="submit" value="Vytvořit téma">
-  
+    <form (ngSubmit)="vytvoritPrispevek(nadpis.value, obsah.value, this.username, this.date)">
+      <label>Předmět</label>
+      <input #nadpis type="text" id="lname" name="lastname" placeholder="Předmět...">
+      <textarea #obsah id="subject" placeholder="Text .." style="height:200px; padding: 10px; resize: none; "></textarea>
+      <input type="submit" value="Přidat příspěvek">
     </form>
   </div>
 <div style="padding: 20px;" class="container">
     <div class="item" *ngFor="let posts of post"> 
         <div>
-        <h1 style="cursor: pointer;" [routerLink]="['/user' , posts.id]">{{posts.username}}</h1>
-        
+        <h1 style="cursor: pointer;" [routerLink]="['/user' , posts.user_id]">{{posts.username}}</h1>
         <h3>{{posts.nadpis}}</h3>
+        <p>Publikováno v den {{posts.date}}</p>
         </div>
       <br style="background-color: grey;" >
         <div class="item">
             <p>{{posts.obsah}}</p>
             
-<div class="item" *ngFor="let komentar of posts.komentare">>
-<p class="komentar">{{ komentare.obsah }} </p>
+<div style="background-color: #333; color: whitesmoke; opacity: 0.8;" class="item" *ngFor="let komentar of posts.komentare">>
+  <div>
+  <p style="cursor: pointer;" [routerLink]="['/user', komentar.User_id]" >{{komentar.username + " - v den " + komentar.date}}</p>
+<p class="komentar">{{komentar.obsah}}</p>
+</div>
 </div> 
 </div>
-    <p><br></p>
 
     <div class="comments">
       <form (ngSubmit)="(komentar.value)" class="komentForm">
         <input type="text" #komentar placeholder="Komentar" name="komentar" id="komentar" required>
-        <button  (click)="pridatKomentar(komentar.value, posts.id)" type="submit" class="postComment">Vložit komentář</button>
+        <button  (click)="pridatKomentar(komentar.value, posts.id)" type="submit" class="postComment">Přidat komentář</button>
       </form>
     </div> 
     </div>

@@ -7,7 +7,7 @@ import firebase from 'firebase/app';
 import {ImageService} from '../imageService';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core'
-import { AngularFireStorage, createStorageRef, GetDownloadURLPipe } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 
@@ -115,7 +115,6 @@ export class ProfileComponent implements OnInit {
   saveToDb(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        user.updateProfile
         firebase.database().ref('users/' + user.uid + '/achievement').set(this.achievement);
         firebase.database().ref('users/' + user.uid + '/goal').set(this.goal);
         firebase.database().ref('users/' + user.uid + '/age').set(this.age);
@@ -133,25 +132,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getValue(event: Event): any {
-    return (event.target as HTMLInputElement).value;
-  }
-
   getBlank(string: any){
     if(string){
       return string;
     }
     return ' ';
   }
-
-
-  // uploadAvatar(){
-    //firebase.auth().onAuthStateChanged((user) => {
-    //firebase.storage().ref('users/' + user.uid + '/profile.jpg').put(this.file).then(function () {
-      //console.log("succesfully uploaded")
-    //}) 
-    //});
- // }
 
  uploadAvatar(){
   firebase.auth().onAuthStateChanged((user) => {
@@ -190,10 +176,10 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event){
     this.avatar = event.target.files[0];
-    
   }
 
   ngOnInit(): void {
+    this.getAvatar();
     this.achievement = this.getBlank(localStorage.getItem("achievement"));
     this.goal = this.getBlank(localStorage.getItem("goal"));
     this.age = this.getBlank(JSON.parse(localStorage.getItem("age")));
@@ -210,12 +196,7 @@ export class ProfileComponent implements OnInit {
       if (user) {
         firebase.database().ref('users/' + user.uid + '/username').set(user.displayName);
         this.username = user.displayName;
-        this.email = user.email;
-        const ref = this.afStorage.ref('avatar/' + user.uid)
-        ref.getDownloadURL().toPromise().then((avatar3: any) =>{
-          this.avatar2 = avatar3;
-          this.editA = false;
-         })
+        this.email = user.email; 
       } else {
       }
     });
